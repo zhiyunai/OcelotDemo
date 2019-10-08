@@ -1,0 +1,37 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/values", //下游服务配置--转到的地址
+      "UpstreamPathTemplate": "/order/values", //上游监听路由地址
+      "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
+        "Get"
+      ],
+      "DownstreamScheme": "http", //转到的请求协议
+      "DownstreamHostAndPorts": [ //转到的端口地址及端口信息
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UseServiceDiscovery": false
+    },
+    {
+      "DownstreamPathTemplate": "/api/values", //下游服务配置--转到的地址
+      "UpstreamPathTemplate": "/goods/values", //上游监听路由地址
+      "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
+        "Get"
+      ],
+      "DownstreamScheme": "http", //转到的请求协议
+      "DownstreamHostAndPorts": [ //转到的端口地址及端口信息
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UseServiceDiscovery": false
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
