@@ -22,7 +22,7 @@ namespace OcelotGateway
                 .ConfigureAppConfiguration((hostingContext, builder) => {
                     builder
                     .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                    .AddJsonFile("Ocelot.json");
+                    .AddJsonFile("LoadBalancing.json");
                 })
                 //.UseKestrel()
                 //.UseUrls("http://localhost:5000")

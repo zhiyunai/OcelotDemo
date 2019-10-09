@@ -1,0 +1,34 @@
+//路由负载均衡
+{
+  "ReRoutes": [
+    {  //【万能模板－捕获所有路由】
+      "DownstreamPathTemplate": "/api/{everything}", //下游服务配置--转到的地址
+      "UpstreamPathTemplate": "/{everything}", //上游监听路由地址
+      //"Priority": 1,    //路由的优先级    优先选择值大的
+      "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
+        "Get",
+        "Post"
+      ],
+      "DownstreamScheme": "http", //转到的请求协议
+      "DownstreamHostAndPorts": [ //转到的端口地址及端口信息
+        {
+          "Host": "localhost",
+          "Port": 5001
+        },
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UseServiceDiscovery": false,
+      "LoadBalancerOptions": { //负载均衡相关选项
+        "Type": "NoLoadBalance", //RoundRobin：轮流发送　　LeastConnection：将请求发往最空闲的那个服务器　　NoLoadBalance：总是发往第一个请求或者是服务发现
+        "Key": null,
+        "Expiry": 0
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}

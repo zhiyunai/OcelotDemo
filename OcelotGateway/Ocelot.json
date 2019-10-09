@@ -1,10 +1,14 @@
+//API网关
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/values", //下游服务配置--转到的地址
-      "UpstreamPathTemplate": "/order/values", //上游监听路由地址
+      //"DownstreamPathTemplate": "/api/values", //下游服务配置--转到的地址
+      "DownstreamPathTemplate": "/api/{everything}", //下游服务配置--转到的地址  【万能模板】
+      "UpstreamPathTemplate": "/order/{everything}", //上游监听路由地址
+      "Priority": 1, //路由的优先级    优先选择值大的
       "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
-        "Get"
+        "Get",
+        "Post"
       ],
       "DownstreamScheme": "http", //转到的请求协议
       "DownstreamHostAndPorts": [ //转到的端口地址及端口信息
