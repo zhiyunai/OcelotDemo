@@ -1,0 +1,50 @@
+//API网关
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/order/getorderinfo", //下游服务配置--转到的地址  【路由聚合】
+      "UpstreamPathTemplate": "/order/{everything}", //上游监听路由地址  【路由聚合】
+      //"Priority": 1, //路由的优先级    优先选择值大的
+      "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
+        "Get"
+      ],
+      "DownstreamScheme": "http", //转到的请求协议
+      "DownstreamHostAndPorts": [ //转到的端口地址及端口信息
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UseServiceDiscovery": false,
+      "Key": "OrderInfo" //  【路由聚合】
+    },
+    {
+      "DownstreamPathTemplate": "/api/goods/getgoodsinfo", //【路由聚合】
+      "UpstreamPathTemplate": "/goods/{everything}", //上游监听路由地址  【路由聚合】
+      "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
+        "Get"
+      ],
+      "DownstreamScheme": "http", //转到的请求协议
+      "DownstreamHostAndPorts": [ //转到的端口地址及端口信息
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UseServiceDiscovery": false,
+      "Key": "GoodsInfo" //  【路由聚合】
+    }
+  ],
+  "Aggregates": [ //请求聚合
+    {
+      "ReRouteKeys": [ //聚合的Key
+        "GoodsInfo",
+        "OrderInfo"
+      ],
+      "UpstreamPathTemplate": "/GetInfo"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
