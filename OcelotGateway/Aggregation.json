@@ -3,7 +3,7 @@
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/order/getorderinfo", //下游服务配置--转到的地址  【路由聚合】
-      "UpstreamPathTemplate": "/order/{everything}", //上游监听路由地址  【路由聚合】
+      "UpstreamPathTemplate": "/order/{everything}", //上游监听路由地址
       //"Priority": 1, //路由的优先级    优先选择值大的
       "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
         "Get"
@@ -20,7 +20,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/goods/getgoodsinfo", //【路由聚合】
-      "UpstreamPathTemplate": "/goods/{everything}", //上游监听路由地址  【路由聚合】
+      "UpstreamPathTemplate": "/goods/{everything}", //上游监听路由地址
       "UpstreamHttpMethod": [ //监听路由请求类型 可用数组
         "Get"
       ],
